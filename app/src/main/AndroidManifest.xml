@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SitesInteressantes"
         tools:targetApi="31">
         <activity
+            android:name=".view.EditSiteActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.SiteDetailsActivity"
             android:exported="false" />
         <activity

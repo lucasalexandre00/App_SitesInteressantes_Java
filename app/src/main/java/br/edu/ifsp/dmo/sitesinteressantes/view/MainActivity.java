@@ -1,5 +1,7 @@
 package br.edu.ifsp.dmo.sitesinteressantes.view;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements SiteClickListener
     private List<Site> siteList;
     private SiteDao dao;
 
+    private ActivityResultLauncher<Intent> resultLauncher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,13 @@ public class MainActivity extends AppCompatActivity implements SiteClickListener
             startActivity(intent);
         });
         recyclerView = findViewById(R.id.recyclerview_sites);
+
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    configList();
+                }
+        );
     }
 
     @Override
@@ -75,6 +85,12 @@ public class MainActivity extends AppCompatActivity implements SiteClickListener
 
     @Override
     public void clickEditSite(int position) {
+
+        Intent intent = new Intent(this, EditSiteActivity.class);
+        intent.putExtra("posicao_lista", position);
+
+        resultLauncher.launch(intent);
+
         //criar a activity para editar site
         //chamar dao para atualizar site
         Toast.makeText(this, "entrou no edit " + position, Toast.LENGTH_SHORT).show();
@@ -86,10 +102,7 @@ public class MainActivity extends AppCompatActivity implements SiteClickListener
         Site site = siteList.get(position);
         dao.delete(site);
         siteList.remove(position);
-        siteList = dao.recuperateAll();
         configList();
-
-        Toast.makeText(this, "entrou no delete " + position, Toast.LENGTH_SHORT).show();
 
     }
 }
