@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements SiteClickListener
 
     @Override
     public void clickEditSite(int position) {
+        //criar a activity para editar site
+        //chamar dao para atualizar site
         Toast.makeText(this, "entrou no edit " + position, Toast.LENGTH_SHORT).show();
     }
 
