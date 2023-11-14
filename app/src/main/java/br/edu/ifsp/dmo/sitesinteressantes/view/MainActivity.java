@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements SiteClickListener
         dao.delete(site);
         siteList.remove(position);
         siteList = dao.recuperateAll();
-        recyclerView.getAdapter().notifyDataSetChanged();
+        configList();
 
         Toast.makeText(this, "entrou no delete " + position, Toast.LENGTH_SHORT).show();
 
