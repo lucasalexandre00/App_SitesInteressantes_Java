@@ -34,7 +34,7 @@ public class SiteDao {
         values.put(DatabaseContracts.TableSite.COLUMN_TAG_ID, tagId );
 
         mDatabase = mHelper.getWritableDatabase();
-        mDatabase.insert(DatabaseContracts.TableSite.CREATE_TABLE,
+        mDatabase.insert(DatabaseContracts.TableSite.TABLE_NAME,
                 null,
                 values);
         mDatabase.close();

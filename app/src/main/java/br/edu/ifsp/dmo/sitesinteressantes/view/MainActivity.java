@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -18,8 +19,9 @@ import br.edu.ifsp.dmo.sitesinteressantes.R;
 import br.edu.ifsp.dmo.sitesinteressantes.model.Site;
 import br.edu.ifsp.dmo.sitesinteressantes.model.dao.SiteDao;
 import br.edu.ifsp.dmo.sitesinteressantes.view.adapter.SiteAdapter;
+import br.edu.ifsp.dmo.sitesinteressantes.view.adapter.SiteClickListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SiteClickListener {
 
     private FloatingActionButton button;
     private RecyclerView recyclerView;
@@ -66,8 +68,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void configList(){
         siteList = dao.recuperateAll();
-        SiteAdapter adapter = new SiteAdapter(siteList);
+        SiteAdapter adapter = new SiteAdapter(siteList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public void clickEditSite(int position) {
+        Toast.makeText(this, "entrou no edit " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void clickDeleteSite(int position) {
+        Toast.makeText(this, "entrou no delete " + position, Toast.LENGTH_SHORT).show();
+
     }
 }

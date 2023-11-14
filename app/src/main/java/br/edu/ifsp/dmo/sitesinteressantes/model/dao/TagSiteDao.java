@@ -24,7 +24,7 @@ public class TagSiteDao {
 
         mDatabase = mHelper.getWritableDatabase();
         mDatabase.insert(
-                DatabaseContracts.TableTag.CREATE_TABLE,
+                DatabaseContracts.TableTag.TABLE_NAME,
                 null,
                 values
         );
@@ -61,7 +61,7 @@ public class TagSiteDao {
         Cursor cursor;
 
         mDatabase = mHelper.getReadableDatabase();
-        cursor = mDatabase.query(DatabaseContracts.DATABASE_NAME,
+        cursor = mDatabase.query(DatabaseContracts.TableTag.TABLE_NAME,
                 columns,
                 null,
                 null,
