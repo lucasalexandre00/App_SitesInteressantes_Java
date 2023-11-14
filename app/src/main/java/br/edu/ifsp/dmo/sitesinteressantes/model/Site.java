@@ -1,6 +1,8 @@
 package br.edu.ifsp.dmo.sitesinteressantes.model;
 
 
+import java.util.Objects;
+
 public class Site {
 
     private String title;
@@ -40,4 +42,5 @@ public class Site {
     public void setTag(TagSite tag) {
         this.tag = tag;
     }
+
 }

@@ -80,6 +80,13 @@ public class MainActivity extends AppCompatActivity implements SiteClickListener
 
     @Override
     public void clickDeleteSite(int position) {
+        siteList = dao.recuperateAll();
+        Site site = siteList.get(position);
+        dao.delete(site);
+        siteList.remove(position);
+        siteList = dao.recuperateAll();
+        recyclerView.getAdapter().notifyDataSetChanged();
+
         Toast.makeText(this, "entrou no delete " + position, Toast.LENGTH_SHORT).show();
 
     }

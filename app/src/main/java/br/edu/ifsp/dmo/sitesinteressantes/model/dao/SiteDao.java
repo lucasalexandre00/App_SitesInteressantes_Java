@@ -67,4 +67,17 @@ public class SiteDao {
         cursor.close();
         return list;
     }
+
+    public void delete(Site site) {
+        String where = DatabaseContracts.TableSite.COLUMN_TITLE + " = ? and " +
+                DatabaseContracts.TableSite.COLUMN_URL + " = ? ";
+
+        String whereArgs[] = {site.getTitle(), site.getUrl()};
+
+        mDatabase = mHelper.getWritableDatabase();
+        mDatabase.delete(DatabaseContracts.TableSite.TABLE_NAME,
+                where,
+                whereArgs);
+        mDatabase.close();
+    }
 }
